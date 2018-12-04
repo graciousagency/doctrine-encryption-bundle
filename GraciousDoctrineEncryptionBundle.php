@@ -4,7 +4,7 @@ namespace Gracious\DoctrineEncryptionBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class DoctrineEncryptionBundle extends Bundle
+class GraciousDoctrineEncryptionBundle extends Bundle
 {
 
 }

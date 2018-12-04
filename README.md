@@ -32,8 +32,8 @@ The following has to be added to you doctrine.yaml
 
 ```yaml
 types:
-  encrypted: 'App\Type\Encrypted'
-  hashed: 'App\Type\Hashed'
+  encrypted: 'Gracious\DoctrineEncryptionBundle\Type\Encrypted'
+  hashed: 'Gracious\DoctrineEncryptionBundle\Type\Hashed'
 ```
 The block would look something like this:
 ```yaml
@@ -50,8 +50,8 @@ doctrine:
         # With Symfony 3.3, remove the `resolve:` prefix
         url: '%env(resolve:DATABASE_URL)%'
         types:
-          encrypted: 'App\Type\Encrypted'
-          hashed: 'App\Type\Hashed'
+          encrypted: 'Gracious\DoctrineEncryptionBundle\Type\Encrypted'
+          hashed: 'Gracious\DoctrineEncryptionBundle\Type\Hashed'
 ```
 
 ## Usage
