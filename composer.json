@@ -3,12 +3,11 @@
     "description": "Simple bundle for adding encryption type to Doctrine",
     "keywords": ["doctrine", "encryption", "hashing"],
     "type": "symfony-bundle",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "require": {
         "php": "^7.2",
         "ext-sodium": "*",
         "symfony/framework-bundle": "^4.0",
-        "symfony/event-dispatcher": "^4.0",
         "symfony/flex": "^1.0",
         "symfony/orm-pack": "^1.0"
     },
