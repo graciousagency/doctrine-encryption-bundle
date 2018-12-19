@@ -17,14 +17,14 @@ There are 2 settings at the moment, both are env vars
 You can do 2 things to generate a key, either type one yourself or run:
 
 ```php
-random_bytes(SODIUM_CRYPTO_SECRETBOX_KEYBYTES);
+sodium_bin2hex(random_bytes(SODIUM_CRYPTO_SECRETBOX_KEYBYTES));
 ```
 
 ## Nonce
 Nonces are automatically generated for each encrypted value and are added to the returned value as follows:
 
 ```text
-<encrypted value|nonce>
+<nonce|encrypted value>
 ```
 
 ## Doctrine settings
