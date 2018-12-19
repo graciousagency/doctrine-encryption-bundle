@@ -40,7 +40,7 @@ class Encrypted extends Type
      */
     public function convertToPHPValue($value, AbstractPlatform $platform) : string
     {
-        if (null === $value) {
+        if (empty($value)) {
             return "";
         }
 
