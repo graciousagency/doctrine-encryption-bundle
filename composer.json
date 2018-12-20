@@ -3,7 +3,6 @@
     "description": "Simple bundle for adding encryption type to Doctrine",
     "keywords": ["doctrine", "encryption", "hashing"],
     "type": "symfony-bundle",
-    "version": "1.0.1",
     "require": {
         "php": "^7.2",
         "ext-sodium": "*",
