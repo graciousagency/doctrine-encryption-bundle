@@ -2,9 +2,10 @@
 
 Simple bundle to add 2 new types to Doctrine
 * encrypted
+* encryptedArrayCollection
 * hashed
 
-It relies on libSodium for encyption
+It relies on libSodium for encryption
 
 ## Settings
 There are 2 settings at the moment, both are env vars
@@ -33,6 +34,7 @@ The following has to be added to you doctrine.yaml
 ```yaml
 types:
   encrypted: 'Gracious\DoctrineEncryptionBundle\Type\Encrypted'
+  encryptedArrayCollection: 'Gracious\DoctrineEncryptionBundle\Type\encryptedArrayCollection'
   hashed: 'Gracious\DoctrineEncryptionBundle\Type\Hashed'
 ```
 The block would look something like this:
@@ -51,13 +53,18 @@ doctrine:
         url: '%env(resolve:DATABASE_URL)%'
         types:
           encrypted: 'Gracious\DoctrineEncryptionBundle\Type\Encrypted'
+          encryptedArrayCollection: 'Gracious\DoctrineEncryptionBundle\Type\EncryptedArrayCollection'
           hashed: 'Gracious\DoctrineEncryptionBundle\Type\Hashed'
 ```
 
 ## Usage
-To use either of the 2 types in your entity just replace the column type with
+To use either of the 3 types in your entity just replace the column type with
 ```text
 @ORM\Column(type="encrypted")
+```
+or
+```text
+@ORM\Column(type="encryptedArrayCollection")
 ```
 or
 ```text
