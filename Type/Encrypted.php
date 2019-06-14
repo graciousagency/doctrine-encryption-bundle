@@ -41,7 +41,7 @@ class Encrypted extends Type
     public function convertToPHPValue($value, AbstractPlatform $platform) : string
     {
         if (empty($value)) {
-            return "";
+            return '';
         }
 
         if (getenv('ENABLE_ENCRYPTION') === 'false') {
