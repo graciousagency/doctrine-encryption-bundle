@@ -6,7 +6,7 @@
     "require": {
         "php": "^7.2",
         "ext-sodium": "*",
-        "symfony/framework-bundle": "^4.0",
+        "symfony/framework-bundle": "^4.0|^5.0",
         "symfony/flex": "^1.0",
         "symfony/orm-pack": "^1.0"
     },
@@ -19,7 +19,7 @@
     ],
     "extra": {
         "symfony": {
-            "require": "^4.2"
+            "require": "^4.0|^5.0"
         }
     },
     "autoload": {
