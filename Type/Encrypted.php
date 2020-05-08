@@ -18,7 +18,7 @@ class Encrypted extends Type
      *
      * @return string
      */
-    public function getSQLDeclaration(array $fieldDeclaration, AbstractPlatform $platform)
+    public function getSQLDeclaration(array $fieldDeclaration, AbstractPlatform $platform): string
     {
         return 'TEXT COMMENT \'(Encrypted)\'';
     }
@@ -44,12 +44,12 @@ class Encrypted extends Type
             return '';
         }
 
-        if (getenv('ENABLE_ENCRYPTION') === 'false') {
+        if (!isset($_ENV['ENABLE_ENCRYPTION']) || $_ENV['ENABLE_ENCRYPTION'] === 'false') {
             return $value;
         }
 
-        list($nonce,$encryptedValue) = explode('|', $value);
-        return sodium_crypto_secretbox_open(sodium_hex2bin($encryptedValue), sodium_hex2bin($nonce), sodium_hex2bin(getenv('ENCRYPTION_KEY')));
+        [$nonce, $encryptedValue] = explode('|', $value);
+        return sodium_crypto_secretbox_open(sodium_hex2bin($encryptedValue), sodium_hex2bin($nonce), sodium_hex2bin($_ENV['ENCRYPTION_KEY']));
     }
 
     /**
@@ -60,7 +60,7 @@ class Encrypted extends Type
      */
     public function convertToDatabaseValue($value, AbstractPlatform $platform)
     {
-        if (getenv('ENABLE_ENCRYPTION') === 'false') {
+        if (!isset($_ENV['ENABLE_ENCRYPTION']) || $_ENV['ENABLE_ENCRYPTION'] === 'false') {
             return $value;
         }
 
@@ -69,7 +69,7 @@ class Encrypted extends Type
         }
 
         $nonce = random_bytes(SODIUM_CRYPTO_SECRETBOX_NONCEBYTES);
-        $key = sodium_hex2bin(getenv('ENCRYPTION_KEY'));
+        $key = sodium_hex2bin($_ENV['ENCRYPTION_KEY']);
 
         $encryptedValue = sodium_crypto_secretbox($value, $nonce, $key);
         return sodium_bin2hex($nonce).'|'.sodium_bin2hex($encryptedValue);

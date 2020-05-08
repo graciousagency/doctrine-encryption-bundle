@@ -19,7 +19,7 @@ class EncryptedArrayCollection extends Type
      *
      * @return string
      */
-    public function getSQLDeclaration(array $fieldDeclaration, AbstractPlatform $platform)
+    public function getSQLDeclaration(array $fieldDeclaration, AbstractPlatform $platform): string
     {
         return 'LONGTEXT COMMENT \'(EncryptedArrayCollection)\'';
     }
@@ -41,13 +41,13 @@ class EncryptedArrayCollection extends Type
      */
     public function convertToPHPValue($array, AbstractPlatform $platform): array
     {
-        $array = json_decode($array);
+        $array = json_decode($array, true);
 
         if (empty($array)) {
             return [''];
         }
 
-        if (getenv('ENABLE_ENCRYPTION') === 'false') {
+        if (!isset($_ENV['ENABLE_ENCRYPTION']) || $_ENV['ENABLE_ENCRYPTION'] === 'false') {
             return $array;
         }
 
@@ -55,7 +55,7 @@ class EncryptedArrayCollection extends Type
 
         foreach ($array as $index => $value) {
             list($nonce, $encryptedValue) = explode('|', $value);
-            $decryptedValue = sodium_crypto_secretbox_open(sodium_hex2bin($encryptedValue), sodium_hex2bin($nonce), sodium_hex2bin(getenv('ENCRYPTION_KEY')));
+            $decryptedValue = sodium_crypto_secretbox_open(sodium_hex2bin($encryptedValue), sodium_hex2bin($nonce), sodium_hex2bin($_ENV['ENCRYPTION_KEY']));
 
             $decryptedArray[$index] = $decryptedValue;
         }
@@ -71,7 +71,7 @@ class EncryptedArrayCollection extends Type
      */
     public function convertToDatabaseValue($array, AbstractPlatform $platform)
     {
-        if (getenv('ENABLE_ENCRYPTION') === 'false') {
+        if (!isset($_ENV['ENABLE_ENCRYPTION']) || $_ENV['ENABLE_ENCRYPTION'] === 'false') {
             return $array;
         }
 
@@ -80,7 +80,7 @@ class EncryptedArrayCollection extends Type
         }
 
         $nonce = random_bytes(SODIUM_CRYPTO_SECRETBOX_NONCEBYTES);
-        $key = sodium_hex2bin(getenv('ENCRYPTION_KEY'));
+        $key = sodium_hex2bin($_ENV['ENCRYPTION_KEY']);
 
         $encryptedArray = [];
 
