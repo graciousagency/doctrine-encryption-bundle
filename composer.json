@@ -4,7 +4,7 @@
     "keywords": ["doctrine", "encryption", "hashing"],
     "type": "symfony-bundle",
     "require": {
-        "php": "^7.2",
+        "php": "^7.2|^8.0",
         "ext-sodium": "*",
         "symfony/framework-bundle": "^4.0|^5.0",
         "symfony/flex": "^1.0",
@@ -25,5 +25,11 @@
     },
     "autoload": {
         "psr-4": { "Gracious\\DoctrineEncryptionBundle\\": "" }
+    },
+    "scripts": {
+        "auto-scripts": {
+            "cache:clear": "symfony-cmd",
+            "assets:install %PUBLIC_DIR%": "symfony-cmd"
+        }
     }
 }
