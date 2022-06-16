@@ -20,7 +20,7 @@ class Encrypted extends Type
      */
     public function getSQLDeclaration(array $fieldDeclaration, AbstractPlatform $platform): string
     {
-        return 'TEXT COMMENT \'(Encrypted)\'';
+        return 'TEXT COMMENT \'(DC2Type:encrypted)\'';
     }
 
     /**
