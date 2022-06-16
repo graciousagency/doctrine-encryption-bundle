@@ -21,7 +21,7 @@ class EncryptedArrayCollection extends Type
      */
     public function getSQLDeclaration(array $fieldDeclaration, AbstractPlatform $platform): string
     {
-        return 'LONGTEXT COMMENT \'(EncryptedArrayCollection)\'';
+        return 'LONGTEXT COMMENT \'(DC2Type:encryptedArrayCollection)\'';
     }
 
     /**

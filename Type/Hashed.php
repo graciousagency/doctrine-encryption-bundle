@@ -20,7 +20,7 @@ class Hashed extends Type
      */
     public function getSQLDeclaration(array $fieldDeclaration, AbstractPlatform $platform): string
     {
-        return 'VARCHAR(255) COMMENT \'(Hashed)\'';
+        return 'VARCHAR(255) COMMENT \'(DC2Type:hashed)\'';
     }
 
     /**
