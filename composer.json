@@ -4,10 +4,10 @@
     "keywords": ["doctrine", "encryption", "hashing"],
     "type": "symfony-bundle",
     "require": {
-        "php": "^7.2|^8.0",
+        "php": "^7.2|^8.0|^8.1|^8.2",
         "ext-sodium": "*",
-        "symfony/framework-bundle": "^4.0|^5.0",
-        "symfony/flex": "^1.0",
+        "symfony/framework-bundle": "^4.0|^5.0|^6.0",
+        "symfony/flex": "^1.0|^2.0",
         "symfony/orm-pack": "^2.0",
         "ext-json": "*"
     },
@@ -20,7 +20,7 @@
     ],
     "extra": {
         "symfony": {
-            "require": "^4.0|^5.0"
+            "require": "^4.0|^5.0|^6.0"
         }
     },
     "autoload": {
