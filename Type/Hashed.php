@@ -42,4 +42,12 @@ class Hashed extends Type
     {
         return hash('whirlpool', $value);
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function requiresSQLCommentHint(AbstractPlatform $platform)
+    {
+        return true;
+    }
 }

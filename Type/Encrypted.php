@@ -74,4 +74,12 @@ class Encrypted extends Type
         $encryptedValue = sodium_crypto_secretbox($value, $nonce, $key);
         return sodium_bin2hex($nonce).'|'.sodium_bin2hex($encryptedValue);
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function requiresSQLCommentHint(AbstractPlatform $platform)
+    {
+        return true;
+    }
 }
