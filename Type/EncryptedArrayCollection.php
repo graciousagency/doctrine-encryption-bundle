@@ -93,4 +93,12 @@ class EncryptedArrayCollection extends Type
 
         return json_encode($encryptedArray);
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function requiresSQLCommentHint(AbstractPlatform $platform)
+    {
+        return true;
+    }
 }
