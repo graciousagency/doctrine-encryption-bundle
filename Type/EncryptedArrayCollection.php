@@ -69,7 +69,7 @@ class EncryptedArrayCollection extends Type
      * @return mixed
      * @throws \Exception
      */
-    public function convertToDatabaseValue($array, AbstractPlatform $platform)
+    public function convertToDatabaseValue($array, AbstractPlatform $platform): mixed
     {
         if (!isset($_ENV['ENABLE_ENCRYPTION']) || $_ENV['ENABLE_ENCRYPTION'] === 'false') {
             return $array;
@@ -92,13 +92,5 @@ class EncryptedArrayCollection extends Type
         }
 
         return json_encode($encryptedArray);
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function requiresSQLCommentHint(AbstractPlatform $platform)
-    {
-        return true;
     }
 }
