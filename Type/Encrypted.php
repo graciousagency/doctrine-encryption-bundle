@@ -38,7 +38,7 @@ class Encrypted extends Type
      * @param AbstractPlatform $platform
      * @return string
      */
-    public function convertToPHPValue($value, AbstractPlatform $platform) : string
+    public function convertToPHPValue($value, AbstractPlatform $platform): string
     {
         if (empty($value)) {
             return '';
@@ -58,7 +58,7 @@ class Encrypted extends Type
      * @return mixed
      * @throws \Exception
      */
-    public function convertToDatabaseValue($value, AbstractPlatform $platform)
+    public function convertToDatabaseValue($value, AbstractPlatform $platform): mixed
     {
         if (!isset($_ENV['ENABLE_ENCRYPTION']) || $_ENV['ENABLE_ENCRYPTION'] === 'false') {
             return $value;
@@ -73,13 +73,5 @@ class Encrypted extends Type
 
         $encryptedValue = sodium_crypto_secretbox($value, $nonce, $key);
         return sodium_bin2hex($nonce).'|'.sodium_bin2hex($encryptedValue);
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function requiresSQLCommentHint(AbstractPlatform $platform)
-    {
-        return true;
     }
 }

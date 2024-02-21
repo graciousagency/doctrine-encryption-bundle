@@ -20,7 +20,8 @@ class Hashed extends Type
      */
     public function getSQLDeclaration(array $fieldDeclaration, AbstractPlatform $platform): string
     {
-        return $platform->getVarcharTypeDeclarationSQL($fieldDeclaration);
+        $fieldDeclaration['length'] = 128;
+        return $platform->getStringTypeDeclarationSQL($fieldDeclaration);
     }
 
     /**
@@ -38,16 +39,8 @@ class Hashed extends Type
      * @param AbstractPlatform $platform
      * @return string
      */
-    public function convertToDatabaseValue($value, AbstractPlatform $platform) : string
+    public function convertToDatabaseValue($value, AbstractPlatform $platform): string
     {
         return hash('whirlpool', $value);
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function requiresSQLCommentHint(AbstractPlatform $platform)
-    {
-        return true;
     }
 }
